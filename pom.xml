@@ -26,7 +26,7 @@
         <springdoc-openapi-ui.version>1.8.0</springdoc-openapi-ui.version>
         <build-helper-maven-plugin.version>3.6.0</build-helper-maven-plugin.version>
         <maven-clean-plugin.version>3.4.0</maven-clean-plugin.version>
-        <src-gen.folder>src-gen</src-gen.folder>
+        <src-gen.openapi.folder>src-gen/openapi</src-gen.openapi.folder>
     </properties>
     <dependencies>
         <dependency>
@@ -171,14 +171,16 @@
                             <inputSpec>
                                 ${project.basedir}/src/main/resources/static/openapi.yml
                             </inputSpec>
-                            <output>${project.basedir}/${src-gen.folder}</output>
+                            <output>${project.basedir}/${src-gen.openapi.folder}</output>
                             <generatorName>spring</generatorName>
                             <generateSupportingFiles>false</generateSupportingFiles>
+
                             <configOptions>
-                                <basePackage>de.kfw.rest</basePackage>
-                                <packageName>de.kfw.rest</packageName>
-                                <apiPackage>de.kfw.rest</apiPackage>
-                                <modelPackage>de.kfw.rest.model</modelPackage>
+                                <useTags>true</useTags>
+                                <basePackage>org.fkeller.spring.boot.openapi.gen.rest</basePackage>
+                                <packageName>org.fkeller.spring.boot.openapi.gen.rest</packageName>
+                                <apiPackage>org.fkeller.spring.boot.openapi.gen.rest</apiPackage>
+                                <modelPackage>org.fkeller.spring.boot.openapi.gen.rest.model</modelPackage>
                                 <library>spring-boot</library>
                                 <useSpringBoot3>true</useSpringBoot3>
                                 <java8>true</java8>
@@ -208,7 +210,7 @@
                         </goals>
                         <configuration>
                             <sources>
-                                <source>${src-gen.folder}/src/main/java</source>
+                                <source>${src-gen.openapi.folder}/src/main/java</source>
                             </sources>
                         </configuration>
                     </execution>
@@ -220,7 +222,7 @@
                 <configuration>
                     <filesets>
                         <fileset>
-                            <directory>${src-gen.folder}</directory>
+                            <directory>${src-gen.openapi.folder}</directory>
                         </fileset>
                     </filesets>
                 </configuration>
