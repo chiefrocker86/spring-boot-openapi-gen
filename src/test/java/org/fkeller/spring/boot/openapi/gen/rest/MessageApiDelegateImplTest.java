@@ -9,6 +9,8 @@ import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.web.servlet.WebMvcTest;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.HttpStatusCode;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.test.context.bean.override.mockito.MockitoBean;
@@ -50,6 +52,8 @@ class MessageApiDelegateImplTest {
 
         ResponseEntity<org.fkeller.spring.boot.openapi.gen.rest.model.Message> response = messageApiDelegateImplTest.messageGet();
         org.fkeller.spring.boot.openapi.gen.rest.model.Message actualMessage = response.getBody();
+
+        assertEquals(HttpStatus.OK.value(), response.getStatusCode().value());
 
         assertNotNull(actualMessage);
         assertEquals(expectedValue, actualMessage.getValue());
