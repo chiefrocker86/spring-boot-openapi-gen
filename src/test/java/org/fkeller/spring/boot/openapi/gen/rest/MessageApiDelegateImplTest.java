@@ -5,9 +5,12 @@ import org.fkeller.spring.boot.openapi.gen.mapper.RestServiceMapper;
 import org.fkeller.spring.boot.openapi.gen.service.MessageService;
 import org.fkeller.spring.boot.openapi.gen.service.model.Message;
 import org.junit.jupiter.api.Test;
+import org.mockito.InjectMocks;
+import org.mockito.Mock;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.web.servlet.WebMvcTest;
 import org.springframework.http.MediaType;
+import org.springframework.http.ResponseEntity;
 import org.springframework.test.context.bean.override.mockito.MockitoBean;
 import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.test.web.servlet.MvcResult;
@@ -19,22 +22,18 @@ import static org.springframework.test.web.servlet.request.MockMvcRequestBuilder
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
 /**
- * Testing {@link MessageController}
+ * Testing {@link MessageApiDelegateImpl}
  */
-@WebMvcTest(MessageController.class)
-class MessageControllerTest {
+class MessageApiDelegateImplTest {
 
-    @Autowired
-    private MockMvc mvc;
+    @InjectMocks
+    private MessageApiDelegateImpl messageApiDelegateImplTest;
 
-    @MockitoBean
+    @Mock
     private MessageService messageService;
 
-    @MockitoBean
+    @Mock
     private RestServiceMapper restServiceMapper;
-
-    @Autowired
-    private ObjectMapper objectMapper;
 
     //Welcome to spring-boot-openapi-gen!
     @Test
@@ -44,32 +43,17 @@ class MessageControllerTest {
         String expectedValue = "Welcome to spring-boot-openapi-gen!";
         Message message = new Message();
         message.setValue(expectedValue);
-        org.fkeller.spring.boot.openapi.gen.rest.model.Message restMessage = new org.fkeller.spring.boot.openapi.gen.rest.model.Message(expectedValue);
+        org.fkeller.spring.boot.openapi.gen.rest.model.Message expectedMessage = new org.fkeller.spring.boot.openapi.gen.rest.model.Message(expectedValue);
 
         when(messageService.message()).thenReturn(message);
-        when(restServiceMapper.serviceMessageToRestMessage(message)).thenReturn(restMessage);
+        when(restServiceMapper.serviceMessageToRestMessage(message)).thenReturn(expectedMessage);
 
-        MvcResult result = mvc.perform(get("/messages")
-                        .contentType(MediaType.APPLICATION_JSON))
-                .andExpect(status().isOk())
-                .andReturn();
+        ResponseEntity<org.fkeller.spring.boot.openapi.gen.rest.model.Message> response = messageApiDelegateImplTest.messageGet();
+        org.fkeller.spring.boot.openapi.gen.rest.model.Message actualMessage = response.getBody();
 
-        String json = result.getResponse().getContentAsString();
-        Message messageActual = objectMapper.readValue(json, Message.class);
+        assertNotNull(actualMessage);
+        assertEquals(expectedValue, actualMessage.getValue());
 
-        assertNotNull(messageActual);
-        assertEquals(expectedValue, messageActual.getValue());
-
-    }
-
-    @Test
-    void whenUndefinedRouteThenReturnNotFound()
-            throws Exception {
-
-        mvc.perform(get("/undefined-route")
-                        .contentType(MediaType.APPLICATION_JSON))
-                .andExpect(status().isNotFound())
-        ;
     }
 
 }

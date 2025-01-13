@@ -185,7 +185,10 @@
                                 <useSpringBoot3>true</useSpringBoot3>
                                 <java8>true</java8>
                                 <dateLibrary>java8</dateLibrary>
-                                <additionalModelTypeAnnotations>@lombok.Data</additionalModelTypeAnnotations>
+                                <additionalModelTypeAnnotations>
+                                    @lombok.Data
+                                    @lombok.AllArgsConstructor
+                                </additionalModelTypeAnnotations>
                                 <documentationProvider>springdoc</documentationProvider>
                                 <delegatePattern>true</delegatePattern>
                                 <skipDefaultInterface>true</skipDefaultInterface>
