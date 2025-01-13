@@ -9,7 +9,12 @@ import org.springframework.boot.test.autoconfigure.web.servlet.WebMvcTest;
 import org.springframework.http.MediaType;
 import org.springframework.test.context.bean.override.mockito.MockitoBean;
 import org.springframework.test.web.servlet.MockMvc;
+import org.springframework.test.web.servlet.MvcResult;
 
+import com.fasterxml.jackson.databind.ObjectMapper;
+
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertNotNull;
 import static org.mockito.Mockito.when;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.content;
@@ -30,6 +35,9 @@ class HelloControllerTest {
     @MockitoBean
     private RestServiceMapper restServiceMapper;
 
+    @Autowired
+    private ObjectMapper objectMapper;
+
     //Welcome to spring-boot-openapi-gen!
     @Test
     void whenIndexThenReturnOK()
@@ -43,11 +51,17 @@ class HelloControllerTest {
         when(helloService.index()).thenReturn(indexMessage);
         when(restServiceMapper.serviceIndexMessageToRestIndexMessage(indexMessage)).thenReturn(restIndexMessage);
 
-        mvc.perform(get("/")
+        MvcResult result = mvc.perform(get("/")
                         .contentType(MediaType.APPLICATION_JSON))
                 .andExpect(status().isOk())
-                .andExpect(content().string(expectedValue))
-        ;
+                .andReturn();
+
+        String json = result.getResponse().getContentAsString();
+        IndexMessage indexMessageActual = objectMapper.readValue(json, IndexMessage.class);
+
+        assertNotNull(indexMessageActual);
+        assertEquals(expectedValue, indexMessageActual.getValue());
+
     }
 
     @Test

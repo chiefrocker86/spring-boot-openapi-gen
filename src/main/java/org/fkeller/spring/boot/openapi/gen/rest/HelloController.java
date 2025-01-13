@@ -15,10 +15,9 @@ public class HelloController {
     private final RestServiceMapper restServiceMapper;
 
     @GetMapping("/")
-    public String index() {
+    public IndexMessage index() {
 
-        IndexMessage indexMessage = restServiceMapper.serviceIndexMessageToRestIndexMessage(helloService.index());
-        return indexMessage.value();
+        return restServiceMapper.serviceIndexMessageToRestIndexMessage(helloService.index());
 
     }
 
