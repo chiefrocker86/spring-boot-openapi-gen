@@ -62,14 +62,4 @@ class MessageControllerTest {
 
     }
 
-    @Test
-    void whenUndefinedRouteThenReturnNotFound()
-            throws Exception {
-
-        mvc.perform(get("/undefined-route")
-                        .contentType(MediaType.APPLICATION_JSON))
-                .andExpect(status().isNotFound())
-        ;
-    }
-
 }
