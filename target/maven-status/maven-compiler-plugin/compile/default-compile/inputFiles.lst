@@ -1,0 +1,8 @@
+/home/fkeller/git/github.com/chiefrocker86/spring-boot-openapi-gen/src/main/java/org/fkeller/spring/boot/openapi/gen/Application.java
+/home/fkeller/git/github.com/chiefrocker86/spring-boot-openapi-gen/src/main/java/org/fkeller/spring/boot/openapi/gen/mapper/RestServiceMapper.java
+/home/fkeller/git/github.com/chiefrocker86/spring-boot-openapi-gen/src/main/java/org/fkeller/spring/boot/openapi/gen/rest/HelloController.java
+/home/fkeller/git/github.com/chiefrocker86/spring-boot-openapi-gen/src/main/java/org/fkeller/spring/boot/openapi/gen/rest/model/IndexMessage.java
+/home/fkeller/git/github.com/chiefrocker86/spring-boot-openapi-gen/src/main/java/org/fkeller/spring/boot/openapi/gen/service/HelloService.java
+/home/fkeller/git/github.com/chiefrocker86/spring-boot-openapi-gen/src/main/java/org/fkeller/spring/boot/openapi/gen/service/HelloServiceImpl.java
+/home/fkeller/git/github.com/chiefrocker86/spring-boot-openapi-gen/src/main/java/org/fkeller/spring/boot/openapi/gen/service/HelloServiceImplConfiguration.java
+/home/fkeller/git/github.com/chiefrocker86/spring-boot-openapi-gen/src/main/java/org/fkeller/spring/boot/openapi/gen/service/model/IndexMessage.java

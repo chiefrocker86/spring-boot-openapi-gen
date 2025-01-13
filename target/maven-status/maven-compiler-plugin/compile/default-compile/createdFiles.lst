@@ -1,0 +1,9 @@
+org/fkeller/spring/boot/openapi/gen/mapper/RestServiceMapper.class
+org/fkeller/spring/boot/openapi/gen/service/model/IndexMessage.class
+org/fkeller/spring/boot/openapi/gen/service/HelloServiceImplConfiguration.class
+org/fkeller/spring/boot/openapi/gen/rest/model/IndexMessage.class
+org/fkeller/spring/boot/openapi/gen/mapper/RestServiceMapperImpl.class
+org/fkeller/spring/boot/openapi/gen/Application.class
+org/fkeller/spring/boot/openapi/gen/service/HelloService.class
+org/fkeller/spring/boot/openapi/gen/rest/HelloController.class
+org/fkeller/spring/boot/openapi/gen/service/HelloServiceImpl.class
