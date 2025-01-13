@@ -44,10 +44,10 @@ class MessageControllerTest {
         String expectedValue = "Welcome to spring-boot-openapi-gen!";
         Message message = new Message();
         message.setValue(expectedValue);
-        org.fkeller.spring.boot.openapi.gen.rest.model.Message restMessage = new org.fkeller.spring.boot.openapi.gen.rest.model.Message(expectedValue);
+        org.fkeller.spring.boot.openapi.gen.rest.model.Message expectedMessage = new org.fkeller.spring.boot.openapi.gen.rest.model.Message(expectedValue);
 
         when(messageService.message()).thenReturn(message);
-        when(restServiceMapper.serviceMessageToRestMessage(message)).thenReturn(restMessage);
+        when(restServiceMapper.serviceMessageToRestMessage(message)).thenReturn(expectedMessage);
 
         MvcResult result = mvc.perform(get("/messages")
                         .contentType(MediaType.APPLICATION_JSON))
@@ -55,10 +55,10 @@ class MessageControllerTest {
                 .andReturn();
 
         String json = result.getResponse().getContentAsString();
-        Message messageActual = objectMapper.readValue(json, Message.class);
+        Message actualMessage = objectMapper.readValue(json, Message.class);
 
-        assertNotNull(messageActual);
-        assertEquals(expectedValue, messageActual.getValue());
+        assertNotNull(actualMessage);
+        assertEquals(expectedValue, actualMessage.getValue());
 
     }
 
