@@ -1,7 +1,6 @@
 package org.fkeller.spring.boot.openapi.gen.rest;
 
-import org.fkeller.spring.boot.openapi.gen.rest.model.Get400Response;
-import org.fkeller.spring.boot.openapi.gen.rest.model.IndexMessage;
+import org.fkeller.spring.boot.openapi.gen.rest.model.Message;
 
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -29,16 +28,16 @@ import jakarta.annotation.Generated;
 @Generated(value = "org.openapitools.codegen.languages.SpringCodegen", comments = "Generator version: 7.10.0")
 @Controller
 @RequestMapping("${openapi.sample.base-path:}")
-public class HelloApiController implements HelloApi {
+public class MessageApiController implements MessageApi {
 
-    private final HelloApiDelegate delegate;
+    private final MessageApiDelegate delegate;
 
-    public HelloApiController(@Autowired(required = false) HelloApiDelegate delegate) {
-        this.delegate = Optional.ofNullable(delegate).orElse(new HelloApiDelegate() {});
+    public MessageApiController(@Autowired(required = false) MessageApiDelegate delegate) {
+        this.delegate = Optional.ofNullable(delegate).orElse(new MessageApiDelegate() {});
     }
 
     @Override
-    public HelloApiDelegate getDelegate() {
+    public MessageApiDelegate getDelegate() {
         return delegate;
     }
 

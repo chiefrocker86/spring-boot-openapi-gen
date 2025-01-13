@@ -1,3 +1,2 @@
-index:
-  message:
-    value:  "Welcome to spring-boot-openapi-gen!"
+message:
+  value: "Welcome to spring-boot-openapi-gen!"

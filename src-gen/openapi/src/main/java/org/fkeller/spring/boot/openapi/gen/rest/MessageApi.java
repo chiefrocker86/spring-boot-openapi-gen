@@ -5,8 +5,7 @@
  */
 package org.fkeller.spring.boot.openapi.gen.rest;
 
-import org.fkeller.spring.boot.openapi.gen.rest.model.Get400Response;
-import org.fkeller.spring.boot.openapi.gen.rest.model.IndexMessage;
+import org.fkeller.spring.boot.openapi.gen.rest.model.Message;
 import io.swagger.v3.oas.annotations.ExternalDocumentation;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.Parameter;
@@ -33,36 +32,32 @@ import jakarta.annotation.Generated;
 @Generated(value = "org.openapitools.codegen.languages.SpringCodegen", comments = "Generator version: 7.10.0")
 @Validated
 @Controller
-@Tag(name = "Hello", description = "the Hello API")
-public interface HelloApi {
+@Tag(name = "Message", description = "the Message API")
+public interface MessageApi {
 
     /**
-     * GET /
-     * requests the index message
+     * GET /message
+     * requests the message
      *
-     * @return Successfully got the index message (status code 200)
-     *         or Invalid request (status code 400)
+     * @return Successfully got the message (status code 200)
      */
     @Operation(
-        operationId = "rootGet",
-        description = "requests the index message",
-        tags = { "Hello" },
+        operationId = "messageGet",
+        description = "requests the message",
+        tags = { "Message" },
         responses = {
-            @ApiResponse(responseCode = "200", description = "Successfully got the index message", content = {
-                @Content(mediaType = "application/json", schema = @Schema(implementation = IndexMessage.class))
-            }),
-            @ApiResponse(responseCode = "400", description = "Invalid request", content = {
-                @Content(mediaType = "application/json", schema = @Schema(implementation = Get400Response.class))
+            @ApiResponse(responseCode = "200", description = "Successfully got the message", content = {
+                @Content(mediaType = "application/json", schema = @Schema(implementation = Message.class))
             })
         }
     )
     @RequestMapping(
         method = RequestMethod.GET,
-        value = "/",
+        value = "/message",
         produces = { "application/json" }
     )
     
-    ResponseEntity<IndexMessage> rootGet(
+    ResponseEntity<Message> messageGet(
         
     );
 

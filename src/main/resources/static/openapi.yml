@@ -4,36 +4,24 @@ info:
   title: Sample API
   description: A sample API to illustrate OpenAPI concepts
 paths:
-  /:
+  /message:
     get:
-      description: requests the index message
+      description: requests the message
       tags:
-        - Hello
+        - Message
       responses:
         '200':
-          description: Successfully got the index message
+          description: Successfully got the message
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/IndexMessage'
-        '400':
-          $ref: '#/components/responses/400Error'
+                $ref: '#/components/schemas/Message'
 components:
   schemas:
-    IndexMessage:
+    Message:
       type: object
       required:
         - value
       properties:
         value:
           type: string
-  responses:
-    400Error:
-      description: Invalid request
-      content:
-        application/json:
-          schema:
-            type: object
-            properties:
-              message:
-                type: string

@@ -1,8 +1,9 @@
 package org.fkeller.spring.boot.openapi.gen.rest;
 
+import com.fasterxml.jackson.databind.ObjectMapper;
 import org.fkeller.spring.boot.openapi.gen.mapper.RestServiceMapper;
-import org.fkeller.spring.boot.openapi.gen.service.HelloService;
-import org.fkeller.spring.boot.openapi.gen.service.model.IndexMessage;
+import org.fkeller.spring.boot.openapi.gen.service.MessageService;
+import org.fkeller.spring.boot.openapi.gen.service.model.Message;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.web.servlet.WebMvcTest;
@@ -11,8 +12,6 @@ import org.springframework.test.context.bean.override.mockito.MockitoBean;
 import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.test.web.servlet.MvcResult;
 
-import com.fasterxml.jackson.databind.ObjectMapper;
-
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNotNull;
 import static org.mockito.Mockito.when;
@@ -20,16 +19,16 @@ import static org.springframework.test.web.servlet.request.MockMvcRequestBuilder
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
 /**
- * Testing {@link HelloApiDelegateImpl}
+ * Testing {@link MessageController}
  */
-@WebMvcTest(HelloApiDelegateImpl.class)
-class HelloApiControllerTest {
+@WebMvcTest(MessageController.class)
+class MessageControllerTest {
 
     @Autowired
     private MockMvc mvc;
 
     @MockitoBean
-    private HelloService helloService;
+    private MessageService messageService;
 
     @MockitoBean
     private RestServiceMapper restServiceMapper;
@@ -39,27 +38,27 @@ class HelloApiControllerTest {
 
     //Welcome to spring-boot-openapi-gen!
     @Test
-    void whenIndexThenReturnOK()
+    void whenMessageThenReturnOK()
             throws Exception {
 
         String expectedValue = "Welcome to spring-boot-openapi-gen!";
-        IndexMessage indexMessage = new IndexMessage();
-        indexMessage.setValue(expectedValue);
-        org.fkeller.spring.boot.openapi.gen.rest.model.IndexMessage restIndexMessage = new org.fkeller.spring.boot.openapi.gen.rest.model.IndexMessage(expectedValue);
+        Message message = new Message();
+        message.setValue(expectedValue);
+        org.fkeller.spring.boot.openapi.gen.rest.model.Message restMessage = new org.fkeller.spring.boot.openapi.gen.rest.model.Message(expectedValue);
 
-        when(helloService.index()).thenReturn(indexMessage);
-        when(restServiceMapper.serviceIndexMessageToRestIndexMessage(indexMessage)).thenReturn(restIndexMessage);
+        when(messageService.message()).thenReturn(message);
+        when(restServiceMapper.serviceMessageToRestMessage(message)).thenReturn(restMessage);
 
-        MvcResult result = mvc.perform(get("/")
+        MvcResult result = mvc.perform(get("/messages")
                         .contentType(MediaType.APPLICATION_JSON))
                 .andExpect(status().isOk())
                 .andReturn();
 
         String json = result.getResponse().getContentAsString();
-        IndexMessage indexMessageActual = objectMapper.readValue(json, IndexMessage.class);
+        Message messageActual = objectMapper.readValue(json, Message.class);
 
-        assertNotNull(indexMessageActual);
-        assertEquals(expectedValue, indexMessageActual.getValue());
+        assertNotNull(messageActual);
+        assertEquals(expectedValue, messageActual.getValue());
 
     }
 

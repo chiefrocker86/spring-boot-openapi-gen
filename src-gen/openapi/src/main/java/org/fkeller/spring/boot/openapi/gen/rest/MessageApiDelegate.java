@@ -1,7 +1,6 @@
 package org.fkeller.spring.boot.openapi.gen.rest;
 
-import org.fkeller.spring.boot.openapi.gen.rest.model.Get400Response;
-import org.fkeller.spring.boot.openapi.gen.rest.model.IndexMessage;
+import org.fkeller.spring.boot.openapi.gen.rest.model.Message;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
@@ -16,20 +15,19 @@ import java.util.Optional;
 import jakarta.annotation.Generated;
 
 /**
- * A delegate to be called by the {@link HelloApiController}}.
+ * A delegate to be called by the {@link MessageApiController}}.
  * Implement this interface with a {@link org.springframework.stereotype.Service} annotated class.
  */
 @Generated(value = "org.openapitools.codegen.languages.SpringCodegen", comments = "Generator version: 7.10.0")
-public interface HelloApiDelegate {
+public interface MessageApiDelegate {
 
     /**
-     * GET /
-     * requests the index message
+     * GET /message
+     * requests the message
      *
-     * @return Successfully got the index message (status code 200)
-     *         or Invalid request (status code 400)
-     * @see HelloApi#rootGet
+     * @return Successfully got the message (status code 200)
+     * @see MessageApi#messageGet
      */
-    ResponseEntity<IndexMessage> rootGet();
+    ResponseEntity<Message> messageGet();
 
 }
