@@ -16,9 +16,9 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
 /**
- * Testing {@link HelloController}
+ * Testing {@link HelloDelegateImpl}
  */
-@WebMvcTest(HelloController.class)
+@WebMvcTest(HelloDelegateImpl.class)
 class HelloControllerTest {
 
     @Autowired
