@@ -192,7 +192,6 @@
                                 <documentationProvider>springdoc</documentationProvider>
                                 <delegatePattern>true</delegatePattern>
                                 <skipDefaultInterface>true</skipDefaultInterface>
-                                <!--<interfaceOnly>true</interfaceOnly>-->
                                 <useSpringController>true</useSpringController>
                                 <snapshotVersion>true</snapshotVersion>
                                 <hideGenerationTimestamp>true</hideGenerationTimestamp>
