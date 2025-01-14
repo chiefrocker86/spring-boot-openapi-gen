@@ -4,8 +4,10 @@ import org.fkeller.spring.boot.openapi.gen.mapper.RestServiceMapper;
 import org.fkeller.spring.boot.openapi.gen.service.MessageService;
 import org.fkeller.spring.boot.openapi.gen.service.model.Message;
 import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
+import org.mockito.junit.jupiter.MockitoExtension;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 
@@ -16,6 +18,7 @@ import static org.mockito.Mockito.when;
 /**
  * Testing {@link MessageApiDelegateImpl}
  */
+@ExtendWith(MockitoExtension.class)
 class MessageApiDelegateImplTest {
 
     @InjectMocks
