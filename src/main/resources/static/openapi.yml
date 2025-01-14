@@ -3,6 +3,8 @@ info:
   version: 1.0.0
   title: Sample API
   description: A sample API to illustrate OpenAPI concepts
+tags:
+- name: Message
 paths:
   /message:
     get:
@@ -20,8 +22,10 @@ components:
   schemas:
     Message:
       type: object
+      description: A message object
       required:
         - value
       properties:
         value:
           type: string
+          example: 'Greetings'
