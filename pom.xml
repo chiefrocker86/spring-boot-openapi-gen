@@ -175,6 +175,7 @@
                             </inputSpec>
                             <output>${project.basedir}/${src-gen.openapi.folder}</output>
                             <generatorName>spring</generatorName>
+                            <templateDirectory>${project.basedir}/src/main/resources/templates</templateDirectory>
                             <generateSupportingFiles>false</generateSupportingFiles>
                             <configOptions>
                                 <useTags>true</useTags>
