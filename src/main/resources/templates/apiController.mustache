@@ -68,14 +68,9 @@ public class {{classname}}Controller implements {{classname}} {
 
     private final {{classname}}Delegate delegate;
 
-    public {{classname}}Controller(@Autowired {{classname}}Delegate delegate) {
+    public {{classname}}Controller(@Autowired(required = true) {{classname}}Delegate delegate) {
         this.delegate = delegate;
     }
-
-    //TODO: loop over all interface methods and delegate them to the delegate
-
-    //@Override
-    //public ResponseEntity<Message>
 
 {{/isDelegate}}
 {{^isDelegate}}
@@ -95,7 +90,7 @@ public class {{classname}}Controller implements {{classname}} {
     {{/reactive}}
 {{/isDelegate}}
 
-{{#_api_controller_impl_}}
+
 {{#operation}}
     /**
      * {{httpMethod}} {{{path}}}{{#summary}} : {{.}}{{/summary}}
@@ -120,6 +115,7 @@ public class {{classname}}Controller implements {{classname}} {
     {{#isDeprecated}}
     @Deprecated
     {{/isDeprecated}}
+    @Override
     public {{#responseWrapper}}{{.}}<{{/responseWrapper}}{{#useResponseEntity}}ResponseEntity<{{/useResponseEntity}}{{>returnTypes}}{{#useResponseEntity}}>{{/useResponseEntity}}{{#responseWrapper}}>{{/responseWrapper}} {{operationId}}(
         {{#allParams}}{{>queryParams}}{{>pathParams}}{{>headerParams}}{{>bodyParams}}{{>formParams}}{{>cookieParams}}{{^-last}},
         {{/-last}}{{/allParams}}{{#vendorExtensions.x-spring-paginated}}{{#hasParams}},
@@ -144,6 +140,6 @@ public class {{classname}}Controller implements {{classname}} {
     }
 
 {{/operation}}
-{{/_api_controller_impl_}}
+
 }
 {{/operations}}
