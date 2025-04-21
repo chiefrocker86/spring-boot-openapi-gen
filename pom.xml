@@ -193,7 +193,6 @@
                                 </additionalModelTypeAnnotations>
                                 <documentationProvider>springdoc</documentationProvider>
                                 <delegatePattern>true</delegatePattern>
-                                <generateApiImpl>true</generateApiImpl>
                                 <skipDefaultInterface>true</skipDefaultInterface>
                                 <useSpringController>true</useSpringController>
                                 <snapshotVersion>true</snapshotVersion>
